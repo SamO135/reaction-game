@@ -850,6 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 4000
+  penaltyForce: 1000
   maxSpeed: 10
   rb: {fileID: 866357984}
   rbc: {fileID: 217252590}

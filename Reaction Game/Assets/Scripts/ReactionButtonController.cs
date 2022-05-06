@@ -66,4 +66,14 @@ public class ReactionButtonController : MonoBehaviour
                 randomDelay -= Time.fixedDeltaTime;
         }
     }
+
+    public float getCurrentReactionTime()
+    {
+        return currentReactionTime;
+    }
+
+    public float getMaxAllowedReactionTime()
+    {
+        return maxAllowedReactionTime;
+    }
 }
