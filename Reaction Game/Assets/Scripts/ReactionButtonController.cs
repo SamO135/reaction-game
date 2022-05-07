@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ReactionButtonController : MonoBehaviour
 {
@@ -23,15 +22,13 @@ public class ReactionButtonController : MonoBehaviour
     [HideInInspector]
     public bool reacting;
 
-    public TMP_Text boostText;
+    public Text boostText;
 
     // Start is called before the first frame update
     void Start()
     {
-        boostText = GetComponent<TMP_Text>();
-
         randomDelay = Random.Range(minDelayTime, maxDelayTime);
-        boostText = GetComponent<TMP_Text>();
+        boostText = GetComponent<Text>();
         reacting = false;
         boosted = false;
         currentReactionTime = maxAllowedReactionTime + 1;
