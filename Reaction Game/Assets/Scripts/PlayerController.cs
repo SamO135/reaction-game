@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float minSpeed;
     public int jumpForce;
     public int penaltyForce;
-    public int maxSpeed;
     public Rigidbody2D rb;
 
-    [SerializeField]
-    private ReactionButtonController rbc;
+    //[SerializeField]
+    public ReactionButtonController rbc;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.up * penaltyForce);
                 Debug.Log("Too early!");
             }
+        }
+
+        if (rb.velocity.sqrMagnitude < minSpeed)
+        {
+            rb.velocity = new Vector2 (0, 0);
         }
         
     }

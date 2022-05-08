@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ReactionButtonController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ReactionButtonController : MonoBehaviour
     [SerializeField]
     private float randomDelay;
 
-    public float maxAllowedReactionTime = 2f;
+    public float maxAllowedReactionTime = 1f;
 
     [SerializeField]
     private float currentReactionTime;
@@ -22,13 +23,13 @@ public class ReactionButtonController : MonoBehaviour
     [HideInInspector]
     public bool reacting;
 
-    public Text boostText;
+    public TMP_Text boostText;
 
     // Start is called before the first frame update
     void Start()
     {
         randomDelay = Random.Range(minDelayTime, maxDelayTime);
-        boostText = GetComponent<Text>();
+        boostText = GetComponent<TMP_Text>();
         reacting = false;
         boosted = false;
         currentReactionTime = maxAllowedReactionTime + 1;
