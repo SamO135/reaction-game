@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     //[SerializeField]
     public ReactionButtonController rbc;
 
+    public MenuController menuController;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +30,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 float proportion = ((rbc.getMaxAllowedReactionTime() - rbc.getCurrentReactionTime()) / rbc.getMaxAllowedReactionTime());
+                rb.velocity = new Vector2(0, 0.3f);
                 rb.AddForce(Vector2.up * jumpForce * proportion);
                 Debug.Log("Force: " + jumpForce * proportion);
                 rbc.boosted = true;
+                rbc.numOfBoosts ++;
             }
         }
         else
@@ -41,10 +46,30 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (rb.velocity.sqrMagnitude < minSpeed)
+        if (rb.velocity.sqrMagnitude <= minSpeed)
         {
             rb.velocity = new Vector2 (0, 0);
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            menuController.ReloadScene();
+        }
         
     }
+
+    public bool isStationary()
+    {
+        return (rb.velocity.y == 0);
+    }
+
+    /*public bool isStationary2Secs(float startTime)
+    {
+        if (!isStationary())
+            return false;
+        if (Time.time >= startTime + 2)
+            return true;
+
+    }*/
+    
 }

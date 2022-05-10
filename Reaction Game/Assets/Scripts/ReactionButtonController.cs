@@ -25,6 +25,10 @@ public class ReactionButtonController : MonoBehaviour
 
     public TMP_Text boostText;
 
+    public int numOfBoosts;
+    public int maxBoosts;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,7 @@ public class ReactionButtonController : MonoBehaviour
         reacting = false;
         boosted = false;
         currentReactionTime = maxAllowedReactionTime + 1;
+        numOfBoosts = 0;
     }
 
     // Update is called once per frame
@@ -48,20 +53,16 @@ public class ReactionButtonController : MonoBehaviour
             }
             else if (currentReactionTime <= maxAllowedReactionTime)
                 currentReactionTime += Time.fixedDeltaTime;
-
-
-
-                
         }
 
         else
         {
-            if (randomDelay <= 0)
+            if (randomDelay <= 0  && (numOfBoosts < maxBoosts))
             {
                 randomDelay = Random.Range(minDelayTime, maxDelayTime);
                 reacting = true;
                 currentReactionTime = 0;
-                boostText.enabled= true;
+                boostText.enabled = true;
             }
             else
                 randomDelay -= Time.fixedDeltaTime;

@@ -357,6 +357,9 @@ MonoBehaviour:
   boosted: 0
   reacting: 0
   boostText: {fileID: 343538996}
+  gameController: {fileID: 499819096}
+  numOfBoosts: 0
+  maxBoosts: 3
 --- !u!114 &343538996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +579,7 @@ GameObject:
   - component: {fileID: 499819094}
   - component: {fileID: 499819093}
   - component: {fileID: 499819092}
+  - component: {fileID: 499819096}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -665,6 +669,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &499819096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499819091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860a232d1decd1a4fbd1cf03c4b7de8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuController: {fileID: 935497613}
+  playerController: {fileID: 866357988}
+  rbc: {fileID: 343538995}
+  targetStartionaryTime: 1
+  currentStationaryTime: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1118,8 @@ MonoBehaviour:
   penaltyForce: 1000
   rb: {fileID: 866357984}
   rbc: {fileID: 343538995}
+  menuController: {fileID: 935497613}
+  gameController: {fileID: 499819096}
 --- !u!1 &905467118
 GameObject:
   m_ObjectHideFlags: 0

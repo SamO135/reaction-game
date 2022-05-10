@@ -19,4 +19,9 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene("MainGame");
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
