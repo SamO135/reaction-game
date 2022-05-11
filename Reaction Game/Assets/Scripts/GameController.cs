@@ -9,8 +9,11 @@ public class GameController : MonoBehaviour
     public MenuController menuController;
     public PlayerController playerController;
     public ReactionButtonController rbc;
+    public GameObject endGameScreen;
     public float targetStartionaryTime;
     private float currentStationaryTime;
+
+    public bool endGame;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +33,13 @@ public class GameController : MonoBehaviour
                     currentStationaryTime += Time.deltaTime;
                 else
                 {
-                    menuController.ReloadScene();
+                    endGame = true;
+                    endGameScreen.SetActive(true);
+                    //menuController.ReloadScene();
                     //rbc.numOfBoosts = 0;
                     //currentStationaryTime = 0;
                 }
             }
-            
         }
 
     }
