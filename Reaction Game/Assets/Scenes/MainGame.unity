@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f78a33a521a04d81d0f3874a0308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDelayTime: 1
-  maxDelayTime: 5
+  minDelayTime: 0.5
+  maxDelayTime: 3
   randomDelay: 0
   maxAllowedReactionTime: 1
   currentReactionTime: 0
@@ -492,6 +492,7 @@ MonoBehaviour:
   boostText: {fileID: 343538996}
   numOfBoosts: 0
   maxBoosts: 3
+  playerController: {fileID: 866357988}
 --- !u!114 &343538996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,7 +819,7 @@ MonoBehaviour:
   playerController: {fileID: 866357988}
   rbc: {fileID: 343538995}
   endGameScreen: {fileID: 1396980432}
-  targetStartionaryTime: 1
+  targetStationaryTime: 0.5
   endGame: 0
 --- !u!1 &519420028
 GameObject:
@@ -1251,6 +1252,7 @@ MonoBehaviour:
   jumpForce: 4000
   penaltyForce: 1000
   rb: {fileID: 866357984}
+  waitingForBoost: 0
   rbc: {fileID: 343538995}
   menuController: {fileID: 935497613}
 --- !u!1 &905467118

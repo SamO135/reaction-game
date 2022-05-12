@@ -20,13 +20,15 @@ public class ReactionButtonController : MonoBehaviour
     [HideInInspector]
     public bool boosted;
 
-    [HideInInspector]
-    public bool reacting;
+    //[HideInInspector]
+    public bool reacting; // True if delay is over and boost text is on screen (i.e. true during the given time they have to react to the boost message)
 
+    public bool waitingForBoost;
     public TMP_Text boostText;
 
     public int numOfBoosts;
     public int maxBoosts;
+    public PlayerController playerController;
 
 
     // Start is called before the first frame update
@@ -45,27 +47,31 @@ public class ReactionButtonController : MonoBehaviour
     {
         if (reacting)
         {
-            if (currentReactionTime > maxAllowedReactionTime || boosted)
+            if (currentReactionTime > maxAllowedReactionTime || boosted) //if boosted or run out of reaction time
             {
                 reacting = false;
                 boosted = false;
                 boostText.enabled = false;
             }
-            else if (currentReactionTime <= maxAllowedReactionTime)
+            else if (currentReactionTime <= maxAllowedReactionTime) //if not boosted and not out of reaction time
                 currentReactionTime += Time.fixedDeltaTime;
         }
 
-        else
+        else // if not reacting
         {
-            if (randomDelay <= 0  && (numOfBoosts < maxBoosts))
+            if (waitingForBoost)
             {
-                randomDelay = Random.Range(minDelayTime, maxDelayTime);
-                reacting = true;
-                currentReactionTime = 0;
-                boostText.enabled = true;
+                if (randomDelay <= 0  && (numOfBoosts < maxBoosts)) // if delay is over and player still has boosts remaining
+                {
+                    randomDelay = Random.Range(minDelayTime, maxDelayTime);
+                    reacting = true;
+                    currentReactionTime = 0;
+                    boostText.enabled = true;
+                }
+                else
+                    randomDelay -= Time.fixedDeltaTime;
             }
-            else
-                randomDelay -= Time.fixedDeltaTime;
+                
         }
     }
 

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     public PlayerController playerController;
     public ReactionButtonController rbc;
     public GameObject endGameScreen;
-    public float targetStartionaryTime;
+    public float targetStationaryTime = 0.5f;
     private float currentStationaryTime;
 
     public bool endGame;
@@ -25,22 +25,31 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
-        if (rbc.numOfBoosts >= rbc.maxBoosts)
+        if (playerController.isStationary())
         {
-            if (playerController.isStationary())
+            if (rbc.numOfBoosts >= rbc.maxBoosts) // if player has used all their boosts
             {
-                if (currentStationaryTime < targetStartionaryTime)
+                if (currentStationaryTime < targetStationaryTime)
                     currentStationaryTime += Time.deltaTime;
-                else
+
+                else        //short pause before end screen is displayed
                 {
                     endGame = true;
                     endGameScreen.SetActive(true);
+                    playerController.enabled = false;
+                    rbc.enabled = false;
                     //menuController.ReloadScene();
                     //rbc.numOfBoosts = 0;
                     //currentStationaryTime = 0;
                 }
             }
         }
+
+
+        if (rbc.reacting) // if player is reacting, they are not waiting to react/boost
+            rbc.waitingForBoost = false;
+        else if (!rbc.reacting && playerController.isStationary()) // if player is not reacting AND not moving, they are waiting to react/boost
+            rbc.waitingForBoost = true;
 
     }
 }
