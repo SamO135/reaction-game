@@ -11,19 +11,21 @@ public class Score : MonoBehaviour
     [HideInInspector]
     public float score;
     private RectTransform scoreTransform;
-    public GameController gameController;
+    //public GameController gameController;
+    GameObject endGameScreen;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         scoreText = GetComponent<TMP_Text>();
         score = 0;
 
+        endGameScreen = GameObject.Find("EndGame");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameController.endGame)
+        if (endGameScreen.activeInHierarchy)
             scoreText.enabled = false;
         else
             scoreText.enabled = true;

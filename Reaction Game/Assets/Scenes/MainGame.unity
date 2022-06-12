@@ -443,7 +443,6 @@ GameObject:
   - component: {fileID: 343538994}
   - component: {fileID: 343538997}
   - component: {fileID: 343538996}
-  - component: {fileID: 343538995}
   m_Layer: 5
   m_Name: BoostText
   m_TagString: Untagged
@@ -470,29 +469,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0002670288, y: -140}
   m_SizeDelta: {x: 289.18, y: 21.472}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &343538995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343538993}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909f78a33a521a04d81d0f3874a0308b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDelayTime: 0.5
-  maxDelayTime: 3
-  randomDelay: 0
-  maxAllowedReactionTime: 1
-  currentReactionTime: 0
-  boosted: 0
-  reacting: 0
-  boostText: {fileID: 343538996}
-  numOfBoosts: 0
-  maxBoosts: 3
-  playerController: {fileID: 866357988}
 --- !u!114 &343538996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +688,6 @@ GameObject:
   - component: {fileID: 499819094}
   - component: {fileID: 499819093}
   - component: {fileID: 499819092}
-  - component: {fileID: 499819096}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -803,24 +778,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &499819096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499819091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860a232d1decd1a4fbd1cf03c4b7de8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuController: {fileID: 935497613}
-  playerController: {fileID: 866357988}
-  rbc: {fileID: 343538995}
-  endGameScreen: {fileID: 1396980432}
-  targetStationaryTime: 0.5
-  endGame: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +986,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 343538995}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -1041,7 +998,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 866357988}
+      - m_Target: {fileID: 866357989}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -1115,7 +1072,7 @@ GameObject:
   - component: {fileID: 866357985}
   - component: {fileID: 866357984}
   - component: {fileID: 866357987}
-  - component: {fileID: 866357988}
+  - component: {fileID: 866357989}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1236,7 +1193,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &866357988
+--- !u!114 &866357989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1245,16 +1202,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 866357983}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed00210d077fd24a9509ca1c8fae6df, type: 3}
+  m_Script: {fileID: 11500000, guid: 66385445771e746c5b04f435b57dc8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 0.2
+  rb: {fileID: 866357984}
+  boostText: {fileID: 343538996}
+  menuController: {fileID: 935497613}
   jumpForce: 4000
   penaltyForce: 1000
-  rb: {fileID: 866357984}
-  waitingForBoost: 0
-  rbc: {fileID: 343538995}
-  menuController: {fileID: 935497613}
+  minSpeed: 0.2
+  minDelay: 1
+  maxDelay: 4
+  maxNumOfBoosts: 3
+  numOfBoosts: 0
+  playerReactionTime: 0
+  proportion: 0
 --- !u!1 &905467118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,11 +1865,11 @@ GameObject:
   - component: {fileID: 1396980434}
   m_Layer: 5
   m_Name: EndGame
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1396980433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2911,7 +2873,6 @@ MonoBehaviour:
   player: {fileID: 866357986}
   scoreText: {fileID: 2038798158}
   score: 0
-  gameController: {fileID: 499819096}
 --- !u!114 &2038798158
 MonoBehaviour:
   m_ObjectHideFlags: 0
