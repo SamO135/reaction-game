@@ -4,7 +4,7 @@ public class PlayerMoveDownState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        player.rb.velocity = new Vector2(0, -1.5f*player.minSpeed);
+        player.rb.velocity = new Vector2(0, 5f*player.minSpeed);
         player.rb.AddForce(Vector2.up * player.penaltyForce);
     }
 
