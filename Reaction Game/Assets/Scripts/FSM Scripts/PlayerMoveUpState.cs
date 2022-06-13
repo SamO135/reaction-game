@@ -10,7 +10,7 @@ public class PlayerMoveUpState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (player.rb.velocity.sqrMagnitude < player.minSpeed) // I think this is true at the start of the boost (when it is speeding up but still moving slower than the 'minSpeed'), which causes the state to be switched to the stationary state even though the player is moving.
+        if (player.rb.velocity.sqrMagnitude < player.minSpeed)
         {
             player.rb.velocity = new Vector2(0, 0);
             player.SwitchState(player.StationaryState);

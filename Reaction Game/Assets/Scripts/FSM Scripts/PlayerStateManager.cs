@@ -14,6 +14,7 @@ public class PlayerStateManager : MonoBehaviour
     public Rigidbody2D rb;
     public TMP_Text boostText;
     public MenuController menuController;
+    public GameObject pauseButton;
     public int jumpForce;
     public int penaltyForce;
     public float minSpeed;
@@ -35,6 +36,7 @@ public class PlayerStateManager : MonoBehaviour
 
         currentState = StationaryState;
         currentState.EnterState(this);
+
     }
 
     // Update is called once per frame

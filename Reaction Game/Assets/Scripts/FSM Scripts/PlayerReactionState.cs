@@ -14,22 +14,26 @@ public class PlayerReactionState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if (currentReactionTime < maxReactionTime)
+        if (Time.timeScale > 0f)
         {
-            currentReactionTime += Time.fixedDeltaTime;
-        }else
-        {
-            player.boostText.enabled = false;
-            player.SwitchState(player.StationaryState);
-        }
+            if (currentReactionTime < maxReactionTime)
+            {
+                currentReactionTime += Time.fixedDeltaTime;
+            }else
+            {
+                player.boostText.enabled = false;
+                player.SwitchState(player.StationaryState);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            player.numOfBoosts ++;
-            player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
-            player.boostText.enabled = false;
-            player.SwitchState(player.MoveUpState);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                player.numOfBoosts ++;
+                player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
+                player.boostText.enabled = false;
+                player.SwitchState(player.MoveUpState);
+            }
         }
+        
 
 
     }

@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    GameObject endGame;
+    public GameObject endGame, pauseMenu;
+
 
     void Awake()
     {
-        endGame = GameObject.Find("EndGame");
+        //endGame = GameObject.Find("EndGame");
+        //pauseMenu = GameObject.Find("PauseMenu");
     }
 
     void Start()
@@ -40,5 +42,31 @@ public class MenuController : MonoBehaviour
     public void OpenEndGameScreen()
     {
         endGame.SetActive(true);
+    }
+
+    /*public void OpenPauseMenu()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+    }
+
+    public void ClosePauseMenu()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+    }*/
+
+    public void TogglePauseMenu()
+    {
+        if (pauseMenu.activeInHierarchy)
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+        }
     }
 }

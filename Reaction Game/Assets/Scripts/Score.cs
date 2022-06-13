@@ -12,14 +12,14 @@ public class Score : MonoBehaviour
     public float score;
     private RectTransform scoreTransform;
     //public GameController gameController;
-    GameObject endGameScreen;
+    public GameObject endGameScreen;
     // Start is called before the first frame update
     void Awake()
     {
         scoreText = GetComponent<TMP_Text>();
         score = 0;
 
-        endGameScreen = GameObject.Find("EndGame");
+        //endGameScreen = GameObject.Find("EndGame");
     }
 
     // Update is called once per frame

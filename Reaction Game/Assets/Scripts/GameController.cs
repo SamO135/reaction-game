@@ -4,52 +4,36 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    //public int numOfBoosts;
-    //public int maxBoosts;
     public MenuController menuController;
-    public PlayerController playerController;
-    public ReactionButtonController rbc;
-    public GameObject endGameScreen;
-    public float targetStationaryTime = 0.5f;
-    private float currentStationaryTime;
-
-    public bool endGame;
+    public GameObject mainMenu, endGame, pauseButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentStationaryTime = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (playerController.isStationary())
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (rbc.numOfBoosts >= rbc.maxBoosts) // if player has used all their boosts
-            {
-                if (currentStationaryTime < targetStationaryTime)
-                    currentStationaryTime += Time.deltaTime;
+            menuController.TogglePauseMenu();
+        }*/
 
-                else        //short pause before end screen is displayed
-                {
-                    endGame = true;
-                    endGameScreen.SetActive(true);
-                    playerController.enabled = false;
-                    rbc.enabled = false;
-                    //menuController.ReloadScene();
-                    //rbc.numOfBoosts = 0;
-                    //currentStationaryTime = 0;
-                }
-            }
+
+        // pause button logic - if a menu is on screen then don't show the pause button so the
+        // player can't pause the game. I moved this code so it is part of the state machine (as 
+        // that way the code isn't run every frame like it is here): The pause button gets 
+        // activated in the StationaryState, and deactivated in the GameOverState.
+
+        /*if (mainMenu.activeInHierarchy || endGame.activeInHierarchy)
+        {
+            pauseButton.SetActive(false);
         }
-
-
-        if (rbc.reacting) // if player is reacting, they are not waiting to react/boost
-            rbc.waitingForBoost = false;
-        else if (!rbc.reacting && playerController.isStationary()) // if player is not reacting AND not moving, they are waiting to react/boost
-            rbc.waitingForBoost = true;
-
+        else
+        {
+            pauseButton.SetActive(true);
+        }*/
     }
 }
