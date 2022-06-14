@@ -3967,8 +3967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 866357986}
   scoreText: {fileID: 2038798158}
-  score: 0
+  score: 
   endGameScreen: {fileID: 1396980432}
+  decimals: 1
 --- !u!114 &2038798158
 MonoBehaviour:
   m_ObjectHideFlags: 0
