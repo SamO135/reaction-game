@@ -15,6 +15,8 @@ public class PlayerStateManager : MonoBehaviour
     public TMP_Text boostText;
     public MenuController menuController;
     public GameObject pauseButton;
+    public GameObject gameText;
+    public TMP_Text score;
     public int jumpForce;
     public int penaltyForce;
     public float minSpeed;

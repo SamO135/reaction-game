@@ -9,6 +9,7 @@ public class PlayerStationaryState : PlayerBaseState
     {
         //Debug.Log("Hello from the Stationary State");
         player.pauseButton.SetActive(true);
+        player.gameText.SetActive(true);
         randomDelay = Random.Range(player.minDelay, player.maxDelay);
     }
 
