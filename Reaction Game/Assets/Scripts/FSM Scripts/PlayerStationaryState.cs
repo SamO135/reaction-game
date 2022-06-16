@@ -30,10 +30,12 @@ public class PlayerStationaryState : PlayerBaseState
                 player.SwitchState(player.ReactionState);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !player.touchedLastFrame))
             {
+                player.touchedLastFrame = true;
                 player.SwitchState(player.MoveDownState);
             }
+            player.CheckReleasedTouch();
         }
         
         

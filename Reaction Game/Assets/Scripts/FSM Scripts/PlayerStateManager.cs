@@ -29,6 +29,8 @@ public class PlayerStateManager : MonoBehaviour
     public float playerReactionTime;
     [HideInInspector]
     public float proportion;
+    [HideInInspector]
+    public bool touchedLastFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +44,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         currentState.UpdateState(this);
     }
@@ -51,6 +53,12 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    public void CheckReleasedTouch()
+    {
+        if (Input.GetMouseButtonUp(0))
+            touchedLastFrame = false;
     }
 
 }

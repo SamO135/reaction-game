@@ -25,13 +25,16 @@ public class PlayerReactionState : PlayerBaseState
                 player.SwitchState(player.StationaryState);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !player.touchedLastFrame))
             {
+                player.touchedLastFrame = true;
                 player.numOfBoosts ++;
                 player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
                 player.boostText.enabled = false;
                 player.SwitchState(player.MoveUpState);
             }
+            player.CheckReleasedTouch();
+
         }
         
 
