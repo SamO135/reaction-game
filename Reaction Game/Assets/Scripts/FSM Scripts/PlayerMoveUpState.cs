@@ -12,11 +12,11 @@ public class PlayerMoveUpState : PlayerBaseState
     {
         if (player.rb.velocity.sqrMagnitude < player.minSpeed)
         {
-            player.rb.velocity = new Vector2(0, 0);
+            player.rb.velocity = Vector2.zero;
             player.SwitchState(player.StationaryState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             player.SwitchState(player.MoveDownState);
         }
