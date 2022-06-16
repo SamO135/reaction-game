@@ -6,6 +6,7 @@ public class PlayerMoveUpState : PlayerBaseState
     {
         player.rb.velocity = new Vector2(0, 5f*player.minSpeed);
         player.rb.AddForce(Vector2.up * player.jumpForce * player.proportion);
+        Debug.Log(player.jumpForce * player.proportion);
     }
 
     public override void UpdateState(PlayerStateManager player)

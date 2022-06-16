@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        endGame.SetActive(false);
+        //endGame.SetActive(false);
     }
 
     public void OpenShop()

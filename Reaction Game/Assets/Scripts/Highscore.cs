@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Highscore : MonoBehaviour
 {
 
-    public TMP_Text highscoreText;
+    public string preceedingText;
 
     // Start is called before the first frame update
     void Start()
     {
-        highscoreText.text = "Highscore: " + PlayerPrefs.GetFloat("Highscore", 0f).ToString();
+        //highscoreText.text = "Highscore: " + PlayerPrefs.GetFloat("Highscore", 0f).ToString();
+        GetComponent<TMP_Text>().text = preceedingText + PlayerPrefs.GetFloat("Highscore", 0f).ToString();
+    
     }
 
     // Update is called once per frame
@@ -19,8 +22,13 @@ public class Highscore : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            PlayerPrefs.DeleteKey("Highscore");
-            highscoreText.text = "Highscore: " + PlayerPrefs.GetFloat("Highscore", 0f).ToString();
+            ResetHighscore();
         }
+    }
+
+    public void ResetHighscore()
+    {
+        PlayerPrefs.DeleteKey("Highscore");
+            GetComponent<TMP_Text>().text = preceedingText + PlayerPrefs.GetFloat("Highscore", 0f).ToString();
     }
 }
