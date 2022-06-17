@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerStationaryState : PlayerBaseState
 {
@@ -24,18 +25,19 @@ public class PlayerStationaryState : PlayerBaseState
 
             if (randomDelay > 0)
             {
-                randomDelay -= Time.fixedDeltaTime;
+                randomDelay -= Time.deltaTime;
             }else
             {
                 player.SwitchState(player.ReactionState);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !player.touchedLastFrame))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                player.touchedLastFrame = true;
-                player.SwitchState(player.MoveDownState);
+                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    player.SwitchState(player.MoveDownState);
+                }
             }
-            player.CheckReleasedTouch();
         }
         
         

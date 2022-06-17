@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerReactionState : PlayerBaseState
 {
@@ -18,22 +19,24 @@ public class PlayerReactionState : PlayerBaseState
         {
             if (currentReactionTime < maxReactionTime)
             {
-                currentReactionTime += Time.fixedDeltaTime;
+                currentReactionTime += Time.deltaTime;
             }else
             {
                 player.boostText.enabled = false;
                 player.SwitchState(player.StationaryState);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !player.touchedLastFrame))
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
             {
-                player.touchedLastFrame = true;
-                player.numOfBoosts ++;
-                player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
-                player.boostText.enabled = false;
-                player.SwitchState(player.MoveUpState);
+                if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                {
+                    player.numOfBoosts ++;
+                    player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
+                    player.boostText.enabled = false;
+                    player.SwitchState(player.MoveUpState);
+                }
+                
             }
-            player.CheckReleasedTouch();
 
         }
         

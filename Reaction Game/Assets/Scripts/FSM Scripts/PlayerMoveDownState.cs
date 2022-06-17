@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMoveDownState : PlayerBaseState
 {
@@ -16,11 +17,12 @@ public class PlayerMoveDownState : PlayerBaseState
             player.SwitchState(player.StationaryState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !player.touchedLastFrame))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
-            player.touchedLastFrame = true;
-            player.rb.AddForce(Vector2.up * player.penaltyForce);
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                player.rb.AddForce(Vector2.up * player.penaltyForce);
+            }
         }
-        player.CheckReleasedTouch();
     }
 }
