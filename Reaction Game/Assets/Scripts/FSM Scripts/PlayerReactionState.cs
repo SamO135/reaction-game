@@ -26,23 +26,18 @@ public class PlayerReactionState : PlayerBaseState
                 player.SwitchState(player.StationaryState);
             }
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
+            if (Input.GetMouseButtonDown(0) &&
+             !((EventSystem.current.IsPointerOverGameObject()) && 
+                EventSystem.current.currentSelectedGameObject != null && 
+                EventSystem.current.currentSelectedGameObject.CompareTag("Button"))
+                ||
+                Input.GetKeyDown(KeyCode.Space))
             {
-                if (!((EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) && 
-                      EventSystem.current.currentSelectedGameObject != null && 
-                      EventSystem.current.currentSelectedGameObject.CompareTag("Button")))
-                {
-                    player.numOfBoosts ++;
-                    player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
-                    player.boostText.enabled = false;
-                    player.SwitchState(player.MoveUpState);
-                }
-                
+                player.numOfBoosts ++;
+                player.proportion = (maxReactionTime - currentReactionTime) / maxReactionTime;
+                player.boostText.enabled = false;
+                player.SwitchState(player.MoveUpState);
             }
-
         }
-        
-
-
     }
 }
