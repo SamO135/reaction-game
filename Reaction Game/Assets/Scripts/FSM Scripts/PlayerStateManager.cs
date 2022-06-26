@@ -46,7 +46,8 @@ public class PlayerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentState.UpdateState(this);
+        if (Time.timeScale > 0f) //if not paused
+            currentState.UpdateState(this);
     }
 
     public void SwitchState(PlayerBaseState state)

@@ -18,12 +18,12 @@ public class PlayerMoveUpState : PlayerBaseState
             player.SwitchState(player.StationaryState);
         }
 
-        if (Input.GetMouseButtonDown(0) && !((EventSystem.current.IsPointerOverGameObject()) && 
-                                              EventSystem.current.currentSelectedGameObject != null && 
-                                              EventSystem.current.currentSelectedGameObject.CompareTag("Button")) ||
-            Input.GetKeyDown(KeyCode.Space))
+
+        /*if (Input.GetMouseButtonDown(0) && !(EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) && 
+                                             EventSystem.current.currentSelectedGameObject != null && 
+                                             EventSystem.current.currentSelectedGameObject.CompareTag("Button")))
         {
             player.SwitchState(player.MoveDownState);
-        }
+        }*/
     }
 }

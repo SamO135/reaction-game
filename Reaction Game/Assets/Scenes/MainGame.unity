@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 46964327}
   m_Layer: 0
   m_Name: PauseButton
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 499819096}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 800, y: 1400}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1153,6 +1153,8 @@ MonoBehaviour:
   mainMenu: {fileID: 935497611}
   endGame: {fileID: 1396980432}
   pauseButton: {fileID: 46964325}
+  coinPrefab: {fileID: 1582532928748765293, guid: 1eb106373bf8fc94ba09ef11563987c6, type: 3}
+  coinSpawnChance: 100
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1869,7 @@ GameObject:
   - component: {fileID: 866357989}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
