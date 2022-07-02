@@ -69,4 +69,11 @@ public class MenuController : MonoBehaviour
             pauseMenu.SetActive(true);
         }
     }
+
+    public void ResetShopPrefs()
+    {
+        PlayerPrefs.DeleteKey("Square");
+        PlayerPrefs.DeleteKey("Summoning_Demon");
+        ReloadScene();
+    }
 }
